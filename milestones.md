@@ -1,6 +1,6 @@
 # Interactive Rails Full-Stack Roadmap (No-Scaffold Edition — **MCQ Mode**)
 
-> **Note:** When using any external gem, always check that it is present in your Gemfile and installed (`bundle install`) before continuing with setup or usage. This prevents missing dependency errors and ensures a smooth workflow.
+> **Note:** All setup commands assume you are already in the project root directory. Use `rails` (not `bin/rails`) for all commands. Gems are installed automatically before starting the MCQ loop.
 
 **Purpose** → Teach Rails 8 full-stack by _running the code_, letting the first runtime error surface the next learning objective, and quizzing the learner with a **multiple-choice prompt** that ties back to community best-practice principles (see `bestpractice.md`).
 
@@ -8,45 +8,54 @@
 
 ---
 
-## Devise Authentication Setup (Step-by-Step)
-
-1. **Install Devise**
-   - `bin/rails generate devise:install`
-   - _What it does:_ Sets up Devise's configuration files, adds initializers, and provides setup instructions. This prepares your app for authentication features.
-
-2. **Generate the User model**
-   - `bin/rails generate devise User`
-   - _What it does:_ Creates a `User` model with Devise modules, migration for user authentication fields, and updates routes for user registration and sessions.
-
-3. **Run the migration**
-   - `bin/rails db:migrate`
-   - _What it does:_ Applies the generated migration, creating the `users` table with all necessary authentication fields in your database.
-
-4. **Update navigation and views**
-   - _What it does:_ Add links for login, signup, and logout to your navbar, and update views to use Devise helpers for user authentication state.
-
----
-
 ## 0. One-Time Auto-Bootstrap _(handled by Copilot Agent)_
 
+The following steps are performed automatically before the MCQ loop begins:
+
 ```bash
+# Create new Rails project (if not already created)
 rails new library_tracker \
   --database=postgresql \
   --skip-test --skip-system-test --skip-javascript --skip-hotwire
 cd library_tracker
 
-# Learning gems (already locked in Gemfile)
+# Install required learning gems
+gem install bundler
 bundle add rspec-rails factory_bot_rails faker devise pundit \
            hotwire-rails sidekiq pry-byebug bullet \
            rubocop rubocop-rails rubocop-performance brakeman \
            --group="development,test"
 
+# Set up database and tools
+gem install rails # Ensure latest rails is available
 rails db:create
 rails g rspec:install
 rails g stimulus:install     # later for Hotwire
 ```
 
 The Agent commits this (`chore: bootstrap app with learning gems`) and sets up GitHub Actions (`rubocop`, `brakeman`, `rspec`). _No application code exists yet._
+
+---
+
+## Devise Authentication Setup (Step-by-Step)
+
+1. **Install Devise**
+
+   - `rails generate devise:install`
+   - _What it does:_ Sets up Devise's configuration files, adds initializers, and provides setup instructions. This prepares your app for authentication features.
+
+2. **Generate the User model**
+
+   - `rails generate devise User`
+   - _What it does:_ Creates a `User` model with Devise modules, migration for user authentication fields, and updates routes for user registration and sessions.
+
+3. **Run the migration**
+
+   - `rails db:migrate`
+   - _What it does:_ Applies the generated migration, creating the `users` table with all necessary authentication fields in your database.
+
+4. **Update navigation and views**
+   - _What it does:_ Add links for login, signup, and logout to your navbar, and update views to use Devise helpers for user authentication state.
 
 ---
 
@@ -78,13 +87,25 @@ Below are the _expected_ first errors and the MCQ the Agent will ask. Each row i
 
 ---
 
-## 3. MCQ Guidelines and Quick Reference
+## 3. MCQ Guidelines and Quick Reference (Read by Copilot Agent)
+
+As your Copilot Agent, I will guide you through each milestone using the following approach:
+
+- **You will create the next bug:** For each milestone, you will attempt to visit a relevant page or perform an action in your Rails app (e.g., open the home page, try to create a book, etc.) in your browser. Do not look at the error in the console or logs yet—just trigger the error naturally by using the app as a user would.
+- **I will surface the error:** I will capture the first error that appears in your browser and present it to you as a learning opportunity. I will not tell you the exact error message up front.
+- **MCQ Prompt:** I will then present a multiple-choice question (MCQ) with 2–4 possible next steps (plus an “Other (custom)” option). Each MCQ and its explanation will reference both `milestones.md` and `bestpractice.md` to justify the choices and reasoning.
+- **Your Response:** Reply with the letter (A/B/C/D) and a brief explanation of why you think it’s the correct next step. If you want to propose a different action, choose “Other” and explain.
+- **Feedback:** I will tell you if your answer is correct, partially correct, or incorrect, and explain why, referencing both files. If incorrect, you can try again.
+- **Implementation:** I will implement the correct next step, run RuboCop, Bullet, Brakeman, and RSpec, and if all is green, commit and open a PR. I will also post a short “Why we built this” blurb referencing both files.
+- **Reflection:** After each step, you are encouraged to write a 1–2 sentence reflection: “What did you learn? What was confusing?”
 
 | **Explicit MCQ Labels** | All MCQs use A/B/C/D labels. Respond with the letter and a brief reason. |
 | **Reference Principles** | MCQ explanations cite specific best practice numbers/sections. |
 | **Feedback Template** | Feedback: "Correct/Incorrect/Partially correct. Here’s why (see milestone X, best practice Y)..." |
-| **Why We Built This** | After each step, include a short "Why we built this" blurb referencing both files. |
-| **Encourage Questions** | Ask why at any step; the Agent will always explain. |
+| **Why We Built This** | After each step, I will include a short "Why we built this" blurb referencing both files. |
+| **Encourage Questions** | Ask why at any step; I will always explain. |
 | **MCQ Randomization** | MCQ answer order is randomized; correct answer is not always first. |
+| **Reflection** | After each milestone, write a short reflection on what you learned. |
 
 > For a quick reference, see the end of this file for a glossary of common Rails terms and best practices.
+> For a more detailed reference, see the [Rails Guides](https://guides.rubyonrails.org/) and the [Ruby Style Guide](https://rubystyle.guide/).
