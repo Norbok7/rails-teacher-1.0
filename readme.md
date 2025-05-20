@@ -6,8 +6,8 @@ Welcome! This repo teaches you full-stack Rails 8 by running code, encountering 
 
 1. **Fork this repo** to your own GitHub account.
 2. **Clone your fork locally** and open the folder in VS Code.
-3. **Make sure the `GIVEtoAGENT` folder stays in the project root.**
-   - This folder contains `bestpractice.md` and `milestones.md`, which the Copilot Agent uses to guide your learning. Do not move or delete it.
+3. **Make sure the `milestones.md` file stays in the project root.**
+   - This file more or less contains `bestpractice.md` and `milestones.md`, which the Copilot Agent uses to guide your learning. Do not move or delete it.
 4. **Install the GitHub Copilot and Copilot Chat extensions** from the VS Code Marketplace if you haven't already.
 5. **Enable the Copilot Agent:**
    - Open the Command Palette (`Cmd+Shift+P` on Mac, `Ctrl+Shift+P` on Windows/Linux).
@@ -21,7 +21,7 @@ Welcome! This repo teaches you full-stack Rails 8 by running code, encountering 
 
    > I want to start the Rails MCQ learning loop. What should I do first?
 
-   Or, follow the "Manual Project Bootstrap" steps in `GIVEtoAGENT/milestones.md`.
+   Or, follow the "Manual Project Bootstrap" steps in `/milestones.md`.
 
 9. **Follow the Copilot Agent's instructions:**
    - Use your browser to trigger errors in your Rails app.
@@ -30,11 +30,11 @@ Welcome! This repo teaches you full-stack Rails 8 by running code, encountering 
 
 10. **Repeat the loop:**
     - After each step, reflect on what you learned.
-    - Continue until you complete all milestones in `GIVEtoAGENT/milestones.md`.
+    - Continue until you complete all milestones in `/milestones.md`.
 
 ## 📝 Tips for Using Copilot Agent
 
-- **Always read `GIVEtoAGENT/bestpractice.md` before making changes.**
+- **Always read `/bestpractice.md` before making changes.**
 - **Run RuboCop auto-correct** before committing code (Copilot will remind you).
 - **Never commit secrets or raw keys.**
 - **Ask Copilot for help or clarification at any step.**
@@ -48,8 +48,8 @@ Welcome! This repo teaches you full-stack Rails 8 by running code, encountering 
 
 ## 📚 References
 
-- [GIVEtoAGENT/bestpractice.md](./GIVEtoAGENT/bestpractice.md): Rails 8 best practices for beginners
-- [GIVEtoAGENT/milestones.md](./GIVEtoAGENT/milestones.md): Interactive MCQ roadmap and workflow
+- [/bestpractice.md](./bestpractice.md): Rails 8 best practices for beginners
+- [/milestones.md](./milestones.md): Interactive MCQ roadmap and workflow
 - [Ruby Style Guide](https://rubystyle.guide/)
 - [Rails Guides](https://guides.rubyonrails.org/)
 
