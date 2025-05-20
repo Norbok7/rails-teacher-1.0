@@ -59,6 +59,28 @@ _Once you have completed these steps, your app is ready for the interactive MCQ 
 
 ---
 
+## Devise Authentication Access
+
+To access the Devise login and registration forms:
+
+- Visit `/users/sign_in` in your browser to see the login form.
+- Visit `/users/sign_up` to see the registration form.
+
+These routes are provided automatically by Devise when you have `devise_for :users` in your `routes.rb`.
+
+After confirming that `/users/sign_in` works in your browser, answer the following multiple-choice question:
+
+**MCQ: What is the best way to help users easily navigate to the login page?**
+
+A) Add a direct link to `/users/sign_in` in your application layout or navbar
+B) Tell users to type the URL manually every time
+C) Only allow login via API requests
+D) Other (custom): **********\_\_**********
+
+_Choose A, B, C, or D and briefly explain why!_
+
+---
+
 ## 1. The **Error-Driven MCQ Loop** (repeats for each feature)
 
 | Phase                   | Agent responsibility                                                                                                                                                                                                                                                                   | Your role                                                                                                      |
@@ -87,16 +109,22 @@ Below are the _expected_ first errors and the MCQ the Agent will ask. Each row i
 
 ---
 
-## 3. MCQ Guidelines and Quick Reference (Read by Copilot Agent)
+## 2a. How to Trigger the Next Error
+
+To move to the next milestone, visit `http://localhost:3000/books` in your browser. This will attempt to access the books resource, which does not exist yet, and should trigger the next error needed for the learning loop. Once you see the error, continue with the MCQ prompt.
+
+---
+
+## MCQ Guidelines and Quick Reference (Read by Copilot Agent)
 
 As your Copilot Agent, I will guide you through each milestone using the following approach:
 
 - **You will create the next bug:** For each milestone, you will attempt to visit a relevant page or perform an action in your Rails app (e.g., open the home page, try to create a book, etc.) in your browser. Do not look at the error in the console or logs yet—just trigger the error naturally by using the app as a user would.
 - **I will surface the error:** I will capture the first error that appears in your browser and present it to you as a learning opportunity. I will not tell you the exact error message up front.
-- **MCQ Prompt:** I will then present a multiple-choice question (MCQ) with 2–4 possible next steps (plus an “Other (custom)” option). Each MCQ and its explanation will reference both `milestones.md` and `bestpractice.md` to justify the choices and reasoning.
+- **MCQ Prompt:** I will then present a multiple-choice question (MCQ) with 2–4 possible next steps (plus an “Other (custom)” option). Each MCQ and its explanation will reference both best practices and milestones.
 - **Your Response:** Reply with the letter (A/B/C/D) and a brief explanation of why you think it’s the correct next step. If you want to propose a different action, choose “Other” and explain.
 - **Feedback:** I will tell you if your answer is correct, partially correct, or incorrect, and explain why, referencing both files. If incorrect, you can try again.
-- **Implementation:** I will implement the correct next step, run RuboCop, Bullet, Brakeman, and RSpec, and if all is green, commit and open a PR. I will also post a short “Why we built this” blurb referencing both files.
+- **Implementation:** I will implement the correct next step, and always explain what was changed and why, referencing both files. I will also post a short “Why we built this” blurb referencing both files.
 - **Reflection:** After each step, you are encouraged to write a 1–2 sentence reflection: “What did you learn? What was confusing?”
 
 | **Explicit MCQ Labels** | All MCQs use A/B/C/D labels. Respond with the letter and a brief reason. |
@@ -108,6 +136,21 @@ As your Copilot Agent, I will guide you through each milestone using the followi
 | **MCQ Randomization** | MCQ answer order is randomized; correct answer is not always first. |
 | **Reflection** | After each milestone, write a short reflection on what you learned. |
 | **No Error Spoilers** | The Agent must not tell the user what error will happen next; instead, prompt the user to visit the browser and recreate the error themselves before proceeding. |
+| **Always Explain** | The Agent must always explain what is being done, why it is being done, and how it relates to best practices and milestones, at every step of the application walkthrough. |
 
 > For a quick reference, see the end of this file for a glossary of common Rails terms and best practices.
 > For a more detailed reference, see the [Rails Guides](https://guides.rubyonrails.org/) and the [Ruby Style Guide](https://rubystyle.guide/).
+
+---
+
+## Devise Authentication Testing Milestone
+
+After setting up Devise and adding navigation links, test the following authentication features in your browser:
+
+- **Sign Up:** Go to `/users/sign_up` and create a new user account.
+- **Sign In:** Go to `/users/sign_in` and log in with your new account.
+- **Log Out:** Use the Logout link in the navbar to log out.
+
+If you encounter any errors during these steps, note the error message and respond with the details. If all steps work, confirm that authentication is functioning as expected.
+
+---
