@@ -30,27 +30,51 @@ bundle add rspec-rails factory_bot_rails faker devise pundit \
 gem install rails # Ensure latest rails is available
 rails db:create
 rails g rspec:install
-rails g stimulus:install     # later for Hotwire
+# rails g stimulus:install     # later for Hotwire
 ```
 
 _Once you have completed these steps, your app is ready for the interactive MCQ learning loop. No application code exists yet._
 
 ---
 
-## Devise Authentication Setup (Step-by-Step)
+## 1. Set Up Root Route and HomeController (Navigation First)
+
+1. **Generate HomeController and set root route**
+   - `rails generate controller Home index`
+   - Set `root "home#index"` in `config/routes.rb`.
+   - _What it does:_ Ensures the app has a working entry point and navigation before adding models or authentication. (Best Practice #2)
+
+---
+
+## 2. Book Model Setup (Model Before Auth/UI)
+
+1. **Generate Book model and migrate**
+   - `rails generate model Book title:string author:string`
+   - `rails db:migrate`
+   - _What it does:_ Establishes the core resource for the app before adding authentication or UI. (Best Practice #2)
+
+---
+
+## 3. BooksController and CRUD (RESTful MVC)
+
+1. **Generate BooksController with CRUD actions**
+   - `rails generate controller Books index show new create edit update destroy`
+   - Add `resources :books` to `config/routes.rb`.
+   - _What it does:_ Implements RESTful CRUD and MVC separation. (Best Practice #2, #3)
+
+---
+
+## 4. Devise Authentication Setup (After Core Model/UI)
 
 1. **Install Devise**
-
    - `rails generate devise:install`
    - _What it does:_ Sets up Devise's configuration files, adds initializers, and provides setup instructions. This prepares your app for authentication features.
 
 2. **Generate the User model**
-
    - `rails generate devise User`
    - _What it does:_ Creates a `User` model with Devise modules, migration for user authentication fields, and updates routes for user registration and sessions.
 
 3. **Run the migration**
-
    - `rails db:migrate`
    - _What it does:_ Applies the generated migration, creating the `users` table with all necessary authentication fields in your database.
 
@@ -59,7 +83,7 @@ _Once you have completed these steps, your app is ready for the interactive MCQ 
 
 ---
 
-## Devise Authentication Access
+## 5. Devise Authentication Access
 
 To access the Devise login and registration forms:
 
@@ -75,7 +99,7 @@ After confirming that `/users/sign_in` works in your browser, answer the followi
 A) Add a direct link to `/users/sign_in` in your application layout or navbar
 B) Tell users to type the URL manually every time
 C) Only allow login via API requests
-D) Other (custom): **********\_\_**********
+D) Other (custom): **********__**********
 
 _Choose A, B, C, or D and briefly explain why!_
 
